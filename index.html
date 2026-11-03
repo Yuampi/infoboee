@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>infoboee | Noticias satíricas en tiempo real</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Barra superior / Disclaimer parodia -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span class="date" id="current-date"></span>
+      <span class="satire-badge">🚨 Sitio Paródico & Humorístico - Noticias 100% de broma</span>
+      <button class="btn-new-news" id="open-modal-btn">+ Añadir Noticia</button>
+    </div>
+  </div>
+
+  <!-- Header principal -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="header-left">
+        <span class="menu-icon">☰</span>
+      </div>
+      <div class="logo-area">
+        <a href="#" class="logo">info<span>boee</span></a>
+        <span class="tagline">El diario parodia que nadie pidió</span>
+      </div>
+      <div class="header-right">
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegación por categorías -->
+  <nav class="nav-bar">
+    <div class="container">
+      <ul class="nav-links">
+        <li><a href="#" class="active" onclick="filterCategory('todas')">Inicio</a></li>
+        <li><a href="#" onclick="filterCategory('Último Momento')">Último Momento</a></li>
+        <li><a href="#" onclick="filterCategory('Insólito')">Insólito</a></li>
+        <li><a href="#" onclick="filterCategory('Amigos & Ficción')">Amigos & Ficción</a></li>
+        <li><a href="#" onclick="filterCategory('Deportes')">Deportes</a></li>
+        <li><a href="#" onclick="filterCategory('Tendencias')">Tendencias</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Cintillo de Alerta / Breaking News -->
+  <div class="breaking-banner">
+    <div class="container breaking-container">
+      <span class="breaking-tag">URGENTE</span>
+      <div class="breaking-text" id="breaking-headline">
+        Científicos confirman que el lunes llegará de nuevo la próxima semana.
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor Principal de Contenido -->
+  <main class="container main-layout">
+    
+    <!-- Noticia Principal (Hero) -->
+    <section class="hero-section" id="hero-article">
+      <!-- Se llena con JS -->
+    </section>
+
+    <!-- Grilla de Noticias Secundarias -->
+    <section class="news-grid-section">
+      <h2 class="section-title">Noticias Destacadas</h2>
+      <div class="news-grid" id="news-grid">
+        <!-- Se llena con JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal para Agregar Noticias -->
+  <div class="modal-overlay" id="news-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Publicar Noticia en InfoBoee</h3>
+        <button class="close-btn" id="close-modal-btn">&times;</button>
+      </div>
+      <form id="news-form">
+        <div class="form-group">
+          <label for="news-title">Título impactante:</label>
+          <input type="text" id="news-title" required placeholder="Ej: Amigo promete llegar en 5 minutos y aparece 3 horas después">
+        </div>
+        <div class="form-group">
+          <label for="news-category">Categoría:</label>
+          <select id="news-category">
+            <option value="Último Momento">Último Momento</option>
+            <option value="Insólito">Insólito</option>
+            <option value="Amigos & Ficción">Amigos & Ficción</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Tendencias">Tendencias</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="news-img">URL de Imagen (opcional):</label>
+          <input type="url" id="news-img" placeholder="https://ejemplo.com/foto.jpg">
+        </div>
+        <div class="form-group">
+          <label for="news-summary">Copete / Bajada (resumen):</label>
+          <textarea id="news-summary" rows="2" placeholder="Breve resumen de la noticia..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="news-body">Cuerpo completo de la noticia:</label>
+          <textarea id="news-body" rows="4" placeholder="Detalles de lo acontecido..." required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">Publicar en Portada</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Leer Noticia Completa -->
+  <div class="modal-overlay" id="read-modal">
+    <div class="modal-content article-view">
+      <div class="modal-header">
+        <span class="badge" id="read-category"></span>
+        <button class="close-btn" id="close-read-btn">&times;</button>
+      </div>
+      <h2 id="read-title" class="read-title"></h2>
+      <p id="read-summary" class="read-lead"></p>
+      <img id="read-img" src="" alt="Imagen" class="read-img">
+      <div id="read-body" class="read-text"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-logo">info<span>boee</span></div>
+      <p>Página paródica para entretenimiento entre amigos. Cualquier parecido con la realidad es pura coincidencia.</p>
+      <p class="copyright">© <span id="year"></span> infoboee - Todos los chistes reservados.</p>
+    </div>
+  </footer>
+
+  <script src="noticias.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
